@@ -149,10 +149,11 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 		TVector3 virtualPhoton_v3 = virtualPhoton.Vect();
 		TVector3 normal_v3 = virtualPhoton_v3.Cross(elec_out_v3);
 		TVector3 leptonplane_transverse_v3 = normal_v3.Cross(virtualPhoton_v3);
-		double costheta_Kp = (virtualPhoton_v3.Mag2()+PKp*PKp-PLambda*PLambda) /2.0 /virtualPhoton_v3.Mag() /PKp;
-		double costheta_Lambda = (virtualPhoton_v3.Mag2()+PLambda*PLambda-PKp*PKp) /2.0 /virtualPhoton_v3.Mag() /PLambda;
 		//// check the kinematics
 		if(virtualPhoton_v3.Mag()>=(PLambda+PKp))continue;
+		if(virtualPhoton_v3.Mag()<=fabs(PLambda-PKp))continue;
+		double costheta_Kp = (virtualPhoton_v3.Mag2()+PKp*PKp-PLambda*PLambda) /2.0 /virtualPhoton_v3.Mag() /PKp;
+		double costheta_Lambda = (virtualPhoton_v3.Mag2()+PLambda*PLambda-PKp*PKp) /2.0 /virtualPhoton_v3.Mag() /PLambda;
 		double sintheta_Kp = sqrt(1 - costheta_Kp*costheta_Kp);
 		double sintheta_Lambda = sqrt(1 - costheta_Lambda*costheta_Lambda);
 		double Phi = random->Uniform(0, 2*PI); //the angle between the hadronic plane and the leptonic plane
@@ -228,15 +229,15 @@ void KaonExculsiveElectroproduction::MakeROOTFile(char *filename){
 	tree->Branch("s", &s, "s/D");
 	tree->Branch("d4sigma", &d4sigma, "d4sigma/D");
 	tree->Branch("d3sigma", &d3sigma, "d3sigma/D");
-	tree->Branch("elec_out", elec_out, 32000, 0);
-	tree->Branch("Lambda_out", Lambda_out, 32000, 0);
-	tree->Branch("Kp_out" , Kp_out , 32000, 0);
-	tree->Branch("LambdaDecayProt_out" , LambdaDecayProt_out , 32000, 0);
-	tree->Branch("LambdaDecayPim_out" , LambdaDecayPim_out , 32000, 0);
-	tree->Branch("LambdaDecayNeut_out" , LambdaDecayNeut_out , 32000, 0);
-	tree->Branch("LambdaDecayPi0_out" , LambdaDecayPi0_out , 32000, 0);
-	tree->Branch("LambdaDecayPi0Gamma1_out" , LambdaDecayPi0Gamma1_out , 32000, 0);
-	tree->Branch("LambdaDecayPi0Gamma2_out" , LambdaDecayPi0Gamma2_out , 32000, 0);
+	tree->Branch("elec_out", "TLorentzVector", elec_out);
+	tree->Branch("Lambda_out", "TLorentzVector", Lambda_out);
+	tree->Branch("Kp_out" , "TLorentzVector", Kp_out);
+	tree->Branch("LambdaDecayProt_out" , "TLorentzVector", LambdaDecayProt_out);
+	tree->Branch("LambdaDecayPim_out" , "TLorentzVector", LambdaDecayPim_out);
+	tree->Branch("LambdaDecayNeut_out" , "TLorentzVector", LambdaDecayNeut_out);
+	tree->Branch("LambdaDecayPi0_out" , "TLorentzVector", LambdaDecayPi0_out);
+	tree->Branch("LambdaDecayPi0Gamma1_out" , "TLorentzVector", LambdaDecayPi0Gamma1_out);
+	tree->Branch("LambdaDecayPi0Gamma2_out" , "TLorentzVector", LambdaDecayPi0Gamma2_out);
 	tree->Branch("LambdaDecayVx", &LambdaDecayVx, "LambdaDecayVx/D");
 	tree->Branch("LambdaDecayVy", &LambdaDecayVy, "LambdaDecayVy/D");
 	tree->Branch("LambdaDecayVz", &LambdaDecayVz, "LambdaDecayVz/D");
