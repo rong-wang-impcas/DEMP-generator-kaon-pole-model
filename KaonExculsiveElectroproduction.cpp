@@ -107,6 +107,8 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 
 	cout<<"    To generate "<<N<<" events..."<<endl;
 
+	eBeam->Boost(-(*BoostToEIC));   /// boost to the proton-rest frame
+
 	for(int i=0; i<N; ){
 		xB = random->Uniform(xBmin, xBmax);
 		Q2 = random->Uniform(Q2min, Q2max);
@@ -142,7 +144,6 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 		double EKp = nv + mN - ELambda;
 		double PLambda = sqrt(ELambda*ELambda - mLambda*mLambda);
 		double PKp = sqrt(EKp*EKp - mkaon*mkaon);
-		eBeam->Boost(-(*BoostToEIC));   /// boost to the proton-rest frame
 		TLorentzVector virtualPhoton = (*eBeam) - (*elec_out);
 		TVector3 elec_out_v3 = elec_out->Vect(); 
 		TVector3 virtualPhoton_v3 = virtualPhoton.Vect();
@@ -150,6 +151,8 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 		TVector3 leptonplane_transverse_v3 = normal_v3.Cross(virtualPhoton_v3);
 		double costheta_Kp = (virtualPhoton_v3.Mag2()+PKp*PKp-PLambda*PLambda) /2.0 /virtualPhoton_v3.Mag() /PKp;
 		double costheta_Lambda = (virtualPhoton_v3.Mag2()+PLambda*PLambda-PKp*PKp) /2.0 /virtualPhoton_v3.Mag() /PLambda;
+		//// check the kinematics
+		if(virtualPhoton_v3.Mag()>=(PLambda+PKp))continue;
 		double sintheta_Kp = sqrt(1 - costheta_Kp*costheta_Kp);
 		double sintheta_Lambda = sqrt(1 - costheta_Lambda*costheta_Lambda);
 		double Phi = random->Uniform(0, 2*PI); //the angle between the hadronic plane and the leptonic plane
@@ -196,8 +199,6 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 		*LambdaDecayPi0Gamma2_out = (*(eventGenerator->GetDecay(1)));
 
 
-		eBeam->Boost(*BoostToEIC);   ///the elec. beam boost back to the collider frame!!!
-
 		//// calculate the differential cross sections
 		d4sigma = d4sigma_dQ2dxBdtdPhi(Q2, xB, t, 0);
 		d3sigma = d3sigma_dQ2dxBdt(Q2, xB, t);
@@ -206,6 +207,7 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 		i++;
 	}
 
+	eBeam->Boost(*BoostToEIC);   ///the elec. beam boost back to the collider frame!!!
 
 	cout<<"    Event generation done! "<<endl;
 	return N;
@@ -216,7 +218,7 @@ void KaonExculsiveElectroproduction::MakeROOTFile(char *filename){
 	//// create the output file and the output TTree
 	cout<<"    Creating the output file: "<<filename<<endl;
 	fout = new TFile(filename,"recreate");
-	tree = new TTree("tree","Exclusive kaon electroproduction - RW");
+	tree = new TTree("tree","Exclusive kaon electroproduction");
 	tree->Branch("xB", &xB, "xB/D");
 	tree->Branch("Q2", &Q2, "Q2/D");
 	tree->Branch("t", &t, "t/D");
