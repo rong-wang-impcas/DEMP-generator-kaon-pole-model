@@ -5,7 +5,7 @@
 #include"KaonExculsiveElectroproduction.cpp"
 
 
-void test(){
+int test(){
 
 	KaonExculsiveElectroproduction demp_kaon;
 
@@ -28,6 +28,7 @@ void test(){
 
 	//cout<<demp_kaon.GetElecBeamEnergy()<<"  "<<demp_kaon.GetProtBeamEnergy()<<"  "<<demp_kaon.GetBeamCrossAngle()<<endl;
 
+	return 0;
 }
 
 
