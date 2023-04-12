@@ -87,10 +87,11 @@ KaonExculsiveElectroproduction::KaonExculsiveElectroproduction(){
 	eventGenerator = new TGenPhaseSpace();
 }
 KaonExculsiveElectroproduction::~KaonExculsiveElectroproduction(){
-	tree->Write();
-	fout->Write();
-	fout->Close();
-	cout<<"    Data file saved and closed~"<<endl<<endl;
+	//tree->Write();
+	//fout->Write();
+	//fout->Close();
+	//cout<<"    Data file saved and closed~"<<endl<<endl;
+	//
 	//delete random;
 	//delete tree;
 	//delete fout;
@@ -217,6 +218,13 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 	eBeam->Boost(*BoostToEIC);   ///the elec. beam boost back to the collider frame!!!
 
 	cout<<"    Event generation done! "<<endl;
+
+
+	tree->Write();
+	//fout->Write();
+	fout->Close();
+	cout<<"    Data file saved and closed~"<<endl<<endl;
+
 	return N;
 }
 
