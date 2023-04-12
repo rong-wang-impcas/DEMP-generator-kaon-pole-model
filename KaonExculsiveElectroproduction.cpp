@@ -259,6 +259,9 @@ void KaonExculsiveElectroproduction::MakeROOTFile(char *filename){
 void KaonExculsiveElectroproduction::SetOutputFileName(char *filename){
 	strcpy(strFileName, filename);
 }
+void KaonExculsiveElectroproduction::SetOutputFileName(TString filename){
+	strcpy(strFileName, filename.Data());
+}
 
 void KaonExculsiveElectroproduction::SetElecBeamEnergy(double ebeamenergy){
 	if(ebeamenergy<0.001){cout<<"Error: electron beam energy is too small!!!"<<endl; return;}

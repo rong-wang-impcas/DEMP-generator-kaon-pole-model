@@ -7,6 +7,7 @@
 #include"TLorentzVector.h"
 #include"TVector3.h"
 #include"TGenPhaseSpace.h"
+#include"TString.h"
 
 #include"KineCal.h"
 
@@ -21,6 +22,7 @@ class KaonExculsiveElectroproduction{
 		int Generate(int N);
 
 		void SetOutputFileName(char *filename);
+		void SetOutputFileName(TString filename);
 
 		//// set beam energies and crossing angle
 		void SetElecBeamEnergy(double ebeamenergy);

@@ -16,8 +16,9 @@ int test(){
 	demp_kaon.SetxBmax(0.8);
 	demp_kaon.SetxBmin(0.001);
 
-	char filename[50] = "DEMP-kaon-pole-at-EicC.root";
-	demp_kaon.SetOutputFileName(filename); 
+	//char filename[50] = "DEMP-kaon-pole-at-EicC.root";
+	//TString filename = "DEMP-kaon-pole-at-EicC.root";
+	demp_kaon.SetOutputFileName("DEMP-kaon-pole-at-EicC.root"); 
 
 	demp_kaon.SetElecBeamEnergy(3.5);
 	demp_kaon.SetProtBeamEnergy(20);
