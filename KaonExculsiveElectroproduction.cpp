@@ -329,7 +329,7 @@ double KaonExculsiveElectroproduction::d3sigma_dQ2dxBdt(double _Q2, double _xB, 
 	/// in the natural unit, i.e., GeV^-6
 	double sigma = flux * (dsigmaT() + epsilon*dsigmaL());
 	/// return in the unit of nb/GeV^4
-	return 3.8809e5 * sigma;
+	return  sigma;
 }
 double KaonExculsiveElectroproduction::N_factor(double _W2, double _Q2){
 	double W2_mN2 = _W2 - mN*mN;
@@ -351,7 +351,7 @@ double KaonExculsiveElectroproduction::dsigmaL(){
 	double gKNN = g_KNN(t);
 	double Kpole = -t / (t-mkaon*mkaon) / (t-mkaon*mkaon);
 	//// this is the Born-term contribution of kaon pole, valid at small |t|.
-	return 16*PI*alpha * gKNN*gKNN * Kpole * Q2 * ffkaon*ffkaon / nfactor;
+	return 3.8809e5 *  16*PI*alpha * gKNN*gKNN * Kpole * Q2 * ffkaon*ffkaon / nfactor;
 }
 
 
