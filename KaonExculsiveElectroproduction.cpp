@@ -368,3 +368,30 @@ void KaonExculsiveElectroproduction::Setymin(double min){ymin = min;}
 void KaonExculsiveElectroproduction::Setymax(double max){ymax = max;}
 
 
+double KaonExculsiveElectroproduction::GetQ2(){return Q2;}
+double KaonExculsiveElectroproduction::GetW2(){return W2;}
+double KaonExculsiveElectroproduction::GetxB(){return xB;}
+double KaonExculsiveElectroproduction::Gett(){return t;}
+double KaonExculsiveElectroproduction::Gety(){return y;}
+double KaonExculsiveElectroproduction::Gets(){return s;}
+double KaonExculsiveElectroproduction::Getepsilon(){return epsilon;}
+void KaonExculsiveElectroproduction::SetQ2(double _Q2){
+	Q2 = _Q2;
+	xB = Q2 / (W2+Q2-mN*mN);
+	y = Q2 / xB / (s-mN*mN);
+	epsilon = kine->calEpsilon(y, Q2, s);
+}
+void KaonExculsiveElectroproduction::SetW2(double _W2){
+	W2 = _W2;
+	xB = Q2 / (W2+Q2-mN*mN);
+	y = Q2 / xB / (s-mN*mN);
+	epsilon = kine->calEpsilon(y, Q2, s);
+}
+void KaonExculsiveElectroproduction::SetxB(double _xB){
+	xB = _xB;
+	W2 = (1.0/xB-1)*Q2 + mN*mN;
+	y = Q2 / xB / (s-mN*mN);
+	epsilon = kine->calEpsilon(y, Q2, s);
+}
+void KaonExculsiveElectroproduction::Sett(double _t){t=_t;}
+

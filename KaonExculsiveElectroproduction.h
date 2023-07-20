@@ -49,6 +49,22 @@ class KaonExculsiveElectroproduction{
 		void Setymax(double max);
 
 
+		double GetQ2();
+		double GetW2();
+		double GetxB();
+		double Gett();
+		double Gety();
+		double Gets();
+		double Getepsilon();
+		void SetQ2(double);
+		void SetW2(double);
+		void SetxB(double);
+		void Sett(double);
+
+
+
+
+
 
 	private:
 		double me;
@@ -124,6 +140,9 @@ class KaonExculsiveElectroproduction{
 
 		void MakeROOTFile(char *filename);
 
+
+
+	public:
 		double N_factor(double _W2, double _Q2);
 		double g_KNN(double _t);
 		double PhotonFlux(double _y, double _xB, double _epsilon, double _Q2);
