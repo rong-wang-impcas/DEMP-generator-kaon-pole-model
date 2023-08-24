@@ -1,4 +1,4 @@
-#include"KaonExculsiveElectroproduction.h"
+#include"KaonExclusiveElectroproduction.h"
 
 #include<iostream>
 #include<string.h>
@@ -8,7 +8,7 @@
 using namespace std;
 
 
-KaonExculsiveElectroproduction::KaonExculsiveElectroproduction(){
+KaonExclusiveElectroproduction::KaonExclusiveElectroproduction(){
 	cout<<"****EicC Meson Form Factor Project"<<endl;
 	cout<<"****Coding issues, contact rwang@impcas.ac.cn"<<endl;
 	cout<<endl<<endl;
@@ -86,7 +86,7 @@ KaonExculsiveElectroproduction::KaonExculsiveElectroproduction(){
 	/// phase space generator
 	eventGenerator = new TGenPhaseSpace();
 }
-KaonExculsiveElectroproduction::~KaonExculsiveElectroproduction(){
+KaonExclusiveElectroproduction::~KaonExclusiveElectroproduction(){
 	//tree->Write();
 	//fout->Write();
 	//fout->Close();
@@ -102,7 +102,7 @@ KaonExculsiveElectroproduction::~KaonExculsiveElectroproduction(){
 	//delete Lambda_out;
 }
 
-int KaonExculsiveElectroproduction::Generate(int N = 20000){
+int KaonExclusiveElectroproduction::Generate(int N = 20000){
 
 	MakeROOTFile(strFileName);
 
@@ -229,7 +229,7 @@ int KaonExculsiveElectroproduction::Generate(int N = 20000){
 }
 
 //// Create a ROOT file and a TTree.
-void KaonExculsiveElectroproduction::MakeROOTFile(char *filename){
+void KaonExclusiveElectroproduction::MakeROOTFile(char *filename){
 	//// create the output file and the output TTree
 	cout<<"    Creating the output file: "<<filename<<endl;
 	fout = new TFile(filename,"recreate");
@@ -256,14 +256,14 @@ void KaonExculsiveElectroproduction::MakeROOTFile(char *filename){
 	tree->Branch("LambdaDecayVy", &LambdaDecayVy, "LambdaDecayVy/D");
 	tree->Branch("LambdaDecayVz", &LambdaDecayVz, "LambdaDecayVz/D");
 }
-void KaonExculsiveElectroproduction::SetOutputFileName(char *filename){
+void KaonExclusiveElectroproduction::SetOutputFileName(char *filename){
 	strcpy(strFileName, filename);
 }
-void KaonExculsiveElectroproduction::SetOutputFileName(TString filename){
+void KaonExclusiveElectroproduction::SetOutputFileName(TString filename){
 	strcpy(strFileName, filename.Data());
 }
 
-void KaonExculsiveElectroproduction::SetElecBeamEnergy(double ebeamenergy){
+void KaonExclusiveElectroproduction::SetElecBeamEnergy(double ebeamenergy){
 	if(ebeamenergy<0.001){cout<<"Error: electron beam energy is too small!!!"<<endl; return;}
 	if(ebeamenergy>1e6){cout<<"Error: electron beam energy is too high!!!"<<endl; return;}
 	eBeamE = ebeamenergy;
@@ -277,8 +277,8 @@ void KaonExculsiveElectroproduction::SetElecBeamEnergy(double ebeamenergy){
 	eBeamENRest = eBeam->E();
 	eBeam->Boost(*BoostToEIC);
 }
-double KaonExculsiveElectroproduction::GetElecBeamEnergy(){return eBeamE;}
-void KaonExculsiveElectroproduction::SetProtBeamEnergy(double pbeamenergy){
+double KaonExclusiveElectroproduction::GetElecBeamEnergy(){return eBeamE;}
+void KaonExclusiveElectroproduction::SetProtBeamEnergy(double pbeamenergy){
 	if(pbeamenergy<1){cout<<"Error: proton beam energy is too small!!!"<<endl; return;}
 	if(pbeamenergy>1e6){cout<<"Error: proton beam energy is too high!!!"<<endl; return;}
 	pBeamE = pbeamenergy;
@@ -292,9 +292,9 @@ void KaonExculsiveElectroproduction::SetProtBeamEnergy(double pbeamenergy){
 	eBeamENRest = eBeam->E();
 	eBeam->Boost(*BoostToEIC);
 }
-double KaonExculsiveElectroproduction::GetProtBeamEnergy(){return pBeamE;}
+double KaonExclusiveElectroproduction::GetProtBeamEnergy(){return pBeamE;}
 //// set beam crossing angle
-void KaonExculsiveElectroproduction::SetBeamCrossAngle(double _angle){
+void KaonExclusiveElectroproduction::SetBeamCrossAngle(double _angle){
 	beam_cross_angle = _angle;
 	eBeam->SetXYZT(0, 0, sqrt(eBeamE*eBeamE-me*me), eBeamE);
 	double p_pz = cos(PI-beam_cross_angle) * sqrt(pBeamE*pBeamE-mN*mN);
@@ -306,24 +306,24 @@ void KaonExculsiveElectroproduction::SetBeamCrossAngle(double _angle){
 	eBeamENRest = eBeam->E();
 	eBeam->Boost(*BoostToEIC);
 }
-double KaonExculsiveElectroproduction::GetBeamCrossAngle(){return beam_cross_angle;}
+double KaonExclusiveElectroproduction::GetBeamCrossAngle(){return beam_cross_angle;}
 
 
 
 
 
 //// the model of kaon form factor
-double KaonExculsiveElectroproduction::FF_kaon(double _Q2){
+double KaonExclusiveElectroproduction::FF_kaon(double _Q2){
 	return 1.0 / (1.0 + _Q2/cutoff_K/cutoff_K);
 }
 //// return cross-section in the unit of nb/GeV^4.
-double KaonExculsiveElectroproduction::d4sigma_dQ2dxBdtdPhi(double _Q2, double _xB, double _t, double _Phi)
+double KaonExclusiveElectroproduction::d4sigma_dQ2dxBdtdPhi(double _Q2, double _xB, double _t, double _Phi)
 {
 	//// No implementation of the Phi-dependence yet
 	return d3sigma_dQ2dxBdt(_Q2, _xB, _t) / 2.0 / PI;
 }
 //// return cross-section in the unit of nb/GeV^4.
-double KaonExculsiveElectroproduction::d3sigma_dQ2dxBdt(double _Q2, double _xB, double _t)
+double KaonExclusiveElectroproduction::d3sigma_dQ2dxBdt(double _Q2, double _xB, double _t)
 {
 	double flux = PhotonFlux(y, _xB, epsilon, _Q2); 
 	/// in the natural unit, i.e., GeV^-6
@@ -331,21 +331,21 @@ double KaonExculsiveElectroproduction::d3sigma_dQ2dxBdt(double _Q2, double _xB, 
 	/// return in the unit of nb/GeV^4
 	return  sigma;
 }
-double KaonExculsiveElectroproduction::N_factor(double _W2, double _Q2){
+double KaonExclusiveElectroproduction::N_factor(double _W2, double _Q2){
 	double W2_mN2 = _W2 - mN*mN;
 	return 32*PI*W2_mN2 * sqrt(W2_mN2*W2_mN2 + _Q2*_Q2 + 2*_Q2*(W2+mN*mN) );
 }
-double KaonExculsiveElectroproduction::g_KNN(double _t){
+double KaonExclusiveElectroproduction::g_KNN(double _t){
 	return 13.4*1.8/sqrt(3) * (cutoff_K*cutoff_K - mkaon*mkaon) / (cutoff_K*cutoff_K - _t);
 	//return 14.688 * (cutoff_K*cutoff_K - mkaon*mkaon) / (cutoff_K*cutoff_K - _t);
 }
-double KaonExculsiveElectroproduction::PhotonFlux(double _y, double _xB, double _epsilon, double _Q2){
+double KaonExclusiveElectroproduction::PhotonFlux(double _y, double _xB, double _epsilon, double _Q2){
 	return alpha*_y*_y*(1-_xB)/2.0/PI/_xB/(1-_epsilon)/_Q2; 
 }
-double KaonExculsiveElectroproduction::dsigmaT(){
+double KaonExclusiveElectroproduction::dsigmaT(){
 	return 0; //// the transverse component can be ignored at very small |t| and high Q2
 }
-double KaonExculsiveElectroproduction::dsigmaL(){
+double KaonExclusiveElectroproduction::dsigmaL(){
 	double nfactor = N_factor(W2, Q2);
 	double ffkaon = FF_kaon(Q2);
 	double gKNN = g_KNN(t);
@@ -358,40 +358,40 @@ double KaonExculsiveElectroproduction::dsigmaL(){
 
 
 //// set sampling ranges
-void KaonExculsiveElectroproduction::SetxBmin(double min){xBmin = min;}
-void KaonExculsiveElectroproduction::SetxBmax(double max){xBmax = max;}
-void KaonExculsiveElectroproduction::SetQ2min(double min){Q2min = min;}
-void KaonExculsiveElectroproduction::SetQ2max(double max){Q2max = max;}
-void KaonExculsiveElectroproduction::SetTmin(double min){Tmin = min;}
-void KaonExculsiveElectroproduction::SetTmax(double max){Tmax = max;}
-void KaonExculsiveElectroproduction::Setymin(double min){ymin = min;}
-void KaonExculsiveElectroproduction::Setymax(double max){ymax = max;}
+void KaonExclusiveElectroproduction::SetxBmin(double min){xBmin = min;}
+void KaonExclusiveElectroproduction::SetxBmax(double max){xBmax = max;}
+void KaonExclusiveElectroproduction::SetQ2min(double min){Q2min = min;}
+void KaonExclusiveElectroproduction::SetQ2max(double max){Q2max = max;}
+void KaonExclusiveElectroproduction::SetTmin(double min){Tmin = min;}
+void KaonExclusiveElectroproduction::SetTmax(double max){Tmax = max;}
+void KaonExclusiveElectroproduction::Setymin(double min){ymin = min;}
+void KaonExclusiveElectroproduction::Setymax(double max){ymax = max;}
 
 
-double KaonExculsiveElectroproduction::GetQ2(){return Q2;}
-double KaonExculsiveElectroproduction::GetW2(){return W2;}
-double KaonExculsiveElectroproduction::GetxB(){return xB;}
-double KaonExculsiveElectroproduction::Gett(){return t;}
-double KaonExculsiveElectroproduction::Gety(){return y;}
-double KaonExculsiveElectroproduction::Gets(){return s;}
-double KaonExculsiveElectroproduction::Getepsilon(){return epsilon;}
-void KaonExculsiveElectroproduction::SetQ2(double _Q2){
+double KaonExclusiveElectroproduction::GetQ2(){return Q2;}
+double KaonExclusiveElectroproduction::GetW2(){return W2;}
+double KaonExclusiveElectroproduction::GetxB(){return xB;}
+double KaonExclusiveElectroproduction::Gett(){return t;}
+double KaonExclusiveElectroproduction::Gety(){return y;}
+double KaonExclusiveElectroproduction::Gets(){return s;}
+double KaonExclusiveElectroproduction::Getepsilon(){return epsilon;}
+void KaonExclusiveElectroproduction::SetQ2(double _Q2){
 	Q2 = _Q2;
 	xB = Q2 / (W2+Q2-mN*mN);
 	y = Q2 / xB / (s-mN*mN);
 	epsilon = kine->calEpsilon(y, Q2, s);
 }
-void KaonExculsiveElectroproduction::SetW2(double _W2){
+void KaonExclusiveElectroproduction::SetW2(double _W2){
 	W2 = _W2;
 	xB = Q2 / (W2+Q2-mN*mN);
 	y = Q2 / xB / (s-mN*mN);
 	epsilon = kine->calEpsilon(y, Q2, s);
 }
-void KaonExculsiveElectroproduction::SetxB(double _xB){
+void KaonExclusiveElectroproduction::SetxB(double _xB){
 	xB = _xB;
 	W2 = (1.0/xB-1)*Q2 + mN*mN;
 	y = Q2 / xB / (s-mN*mN);
 	epsilon = kine->calEpsilon(y, Q2, s);
 }
-void KaonExculsiveElectroproduction::Sett(double _t){t=_t;}
+void KaonExclusiveElectroproduction::Sett(double _t){t=_t;}
 

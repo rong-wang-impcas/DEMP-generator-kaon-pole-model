@@ -1,5 +1,5 @@
-#ifndef _KaonExculsiveElectroproduction_H
-#define _KaonExculsiveElectroproduction_H 1
+#ifndef _KaonExclusiveElectroproduction_H
+#define _KaonExclusiveElectroproduction_H 1
 
 #include"TRandom3.h"
 #include"TFile.h"
@@ -12,11 +12,11 @@
 #include"KineCal.h"
 
 
-class KaonExculsiveElectroproduction{
+class KaonExclusiveElectroproduction{
 
 	public:
-		KaonExculsiveElectroproduction();
-		~KaonExculsiveElectroproduction();
+		KaonExclusiveElectroproduction();
+		~KaonExclusiveElectroproduction();
 
 		/// the function to generate and dump N events into root file
 		int Generate(int N);

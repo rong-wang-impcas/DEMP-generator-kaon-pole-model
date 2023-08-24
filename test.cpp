@@ -1,13 +1,13 @@
 #include"KineCal.h"
-#include"KaonExculsiveElectroproduction.h"
+#include"KaonExclusiveElectroproduction.h"
 
 #include"KineCal.cpp"
-#include"KaonExculsiveElectroproduction.cpp"
+#include"KaonExclusiveElectroproduction.cpp"
 
 
 int test(){
 
-	KaonExculsiveElectroproduction demp_kaon;
+	KaonExclusiveElectroproduction demp_kaon;
 
 	demp_kaon.SetTmax(0.5);
 	demp_kaon.SetTmin(0.01);
