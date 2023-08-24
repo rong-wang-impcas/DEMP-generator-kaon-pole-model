@@ -25,7 +25,8 @@ int test(){
 	//demp_kaon.SetBeamCrossAngle(0.0);
 	demp_kaon.SetBeamCrossAngle(0.05);
 
-	demp_kaon.Generate(800000);
+	demp_kaon.SetSamplingMode(1);
+	demp_kaon.Generate(100000);
 
 	//cout<<demp_kaon.GetElecBeamEnergy()<<"  "<<demp_kaon.GetProtBeamEnergy()<<"  "<<demp_kaon.GetBeamCrossAngle()<<endl;
 

@@ -60,6 +60,7 @@ class KaonExclusiveElectroproduction{
 		void SetW2(double);
 		void SetxB(double);
 		void Sett(double);
+		int SetSamplingMode(int flag);
 
 
 
@@ -67,6 +68,9 @@ class KaonExclusiveElectroproduction{
 
 
 	private:
+		int sampling_flag;
+		double max_d4sigma;
+
 		double me;
 		double mpi;
 		double mN;
