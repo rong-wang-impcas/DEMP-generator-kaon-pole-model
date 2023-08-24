@@ -21,6 +21,7 @@ KaonExclusiveElectroproduction::KaonExclusiveElectroproduction(){
 
 	beam_cross_angle = 0.05; //// 50 mrad = 0.05rad
 	sampling_flag = 0;
+	quiet_flag = 0;
 	max_d4sigma = 0.35;
 	///// the kinematical ranges for MC sampling
 	xBmin = 0.0001;
@@ -217,7 +218,7 @@ int KaonExclusiveElectroproduction::Generate(int N = 20000){
 			if(d4sigma < random->Uniform(0,max_d4sigma))continue;
 		tree->Fill();
 		i++;
-		if(i%1000==0)cout<<i<<" events"<<endl;
+		if(!quiet_flag) if(i%1000==0) cout<<i<<" events"<<endl;
 	}
 
 	eBeam->Boost(*BoostToEIC);   ///the elec. beam boost back to the collider frame!!!
@@ -375,6 +376,7 @@ int KaonExclusiveElectroproduction::SetSamplingMode(int flag){
 	sampling_flag = flag;
 	return sampling_flag;
 }
+int KaonExclusiveElectroproduction::SetQuiet(int flag){quiet_flag = flag; return quiet_flag;}
 
 
 

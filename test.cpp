@@ -20,11 +20,13 @@ int test(){
 	//TString filename = "DEMP-kaon-pole-at-EicC.root";
 	demp_kaon.SetOutputFileName("DEMP-kaon-pole-at-EicC.root"); 
 
+
 	demp_kaon.SetElecBeamEnergy(3.5);
 	demp_kaon.SetProtBeamEnergy(20);
 	//demp_kaon.SetBeamCrossAngle(0.0);
 	demp_kaon.SetBeamCrossAngle(0.05);
 
+	//demp_kaon.SetQuiet(1);
 	demp_kaon.SetSamplingMode(1);
 	demp_kaon.Generate(100000);
 
