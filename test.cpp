@@ -19,6 +19,7 @@ int test(){
 	//char filename[50] = "DEMP-kaon-pole-at-EicC.root";
 	//TString filename = "DEMP-kaon-pole-at-EicC.root";
 	demp_kaon.SetOutputFileName("DEMP-kaon-pole-at-EicC.root"); 
+	demp_kaon.SetEvtFileOutput(1);
 
 
 	demp_kaon.SetElecBeamEnergy(3.5);
@@ -28,7 +29,7 @@ int test(){
 
 	//demp_kaon.SetQuiet(1);
 	demp_kaon.SetSamplingMode(1);
-	demp_kaon.Generate(100000);
+	demp_kaon.Generate(10000);
 
 	//cout<<demp_kaon.GetElecBeamEnergy()<<"  "<<demp_kaon.GetProtBeamEnergy()<<"  "<<demp_kaon.GetBeamCrossAngle()<<endl;
 

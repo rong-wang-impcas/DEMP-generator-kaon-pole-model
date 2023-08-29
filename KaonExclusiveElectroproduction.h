@@ -1,6 +1,9 @@
 #ifndef _KaonExclusiveElectroproduction_H
 #define _KaonExclusiveElectroproduction_H 1
 
+#include<fstream>
+#include<string.h>
+
 #include"TRandom3.h"
 #include"TFile.h"
 #include"TTree.h"
@@ -61,6 +64,7 @@ class KaonExclusiveElectroproduction{
 		void SetxB(double);
 		void Sett(double);
 		int SetSamplingMode(int flag);
+		int SetEvtFileOutput(int flag);
 		int SetQuiet(int flag);
 
 
@@ -70,6 +74,7 @@ class KaonExclusiveElectroproduction{
 
 	private:
 		int sampling_flag;
+		int evtfile_flag;
 		int quiet_flag;
 		double max_d4sigma;
 
@@ -137,6 +142,7 @@ class KaonExclusiveElectroproduction{
 
 		TRandom3 *random;
 		TFile *fout;
+		ofstream *evtfile;
 		TTree *tree;
 		KineCal *kine;
 
@@ -145,6 +151,7 @@ class KaonExclusiveElectroproduction{
 		char *strFileName;
 
 		void MakeROOTFile(char *filename);
+		void MakeEvtFile(char *filename);
 
 
 
