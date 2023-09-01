@@ -224,31 +224,31 @@ int KaonExclusiveElectroproduction::Generate(int N = 20000){
 			(*evtfile)<<"  "<<"N\t"<<"Id\t"<<"Ist\t"<<"M1\t"<<"M2\t"<<"DF\t"<<"DL\t";
 			(*evtfile)<<"px\t"<<"py\t"<<"pz\t"<<"E\t"<<"t\t"<<"x\t"<<"y\t"<<"z"<<endl;
 
-			(*evtfile)<<"  "<<0<<"\t"<<11<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<0<<"\t"<<11<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<elec_out->Px()<<" "<<elec_out->Py()<<" "<<-elec_out->Pz()<<" "<<elec_out->E()<<" ";
 			(*evtfile)<<0<<" "<<0<<" "<<0<<" "<<0<<endl;
 
-			(*evtfile)<<"  "<<1<<"\t"<<321<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<1<<"\t"<<321<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<Kp_out->Px()<<" "<<Kp_out->Py()<<" "<<-Kp_out->Pz()<<" "<<Kp_out->E()<<" ";
 			(*evtfile)<<0<<" "<<0<<" "<<0<<" "<<0<<endl;
 
-			(*evtfile)<<"  "<<2<<"\t"<<2212<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<2<<"\t"<<2212<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<LambdaDecayProt_out->Px()<<" "<<LambdaDecayProt_out->Py()<<" "<<-LambdaDecayProt_out->Pz()<<" "<<LambdaDecayProt_out->E()<<" ";
 			(*evtfile)<<0<<" "<<LambdaDecayVx<<" "<<LambdaDecayVy<<" "<<-LambdaDecayVz<<endl;
 
-			(*evtfile)<<"  "<<3<<"\t"<<-211<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<3<<"\t"<<-211<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<LambdaDecayPim_out->Px()<<" "<<LambdaDecayPim_out->Py()<<" "<<-LambdaDecayPim_out->Pz()<<" "<<LambdaDecayPim_out->E()<<" ";
 			(*evtfile)<<0<<" "<<LambdaDecayVx<<" "<<LambdaDecayVy<<" "<<-LambdaDecayVz<<endl;
 
-			(*evtfile)<<"  "<<4<<"\t"<<2112<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<4<<"\t"<<2112<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<LambdaDecayNeut_out->Px()<<" "<<LambdaDecayNeut_out->Py()<<" "<<-LambdaDecayNeut_out->Pz()<<" "<<LambdaDecayNeut_out->E()<<" ";
 			(*evtfile)<<0<<" "<<LambdaDecayVx<<" "<<LambdaDecayVy<<" "<<-LambdaDecayVz<<endl;
 
-			(*evtfile)<<"  "<<5<<"\t"<<22<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<5<<"\t"<<22<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<LambdaDecayPi0Gamma1_out->Px()<<" "<<LambdaDecayPi0Gamma1_out->Py()<<" "<<-LambdaDecayPi0Gamma1_out->Pz()<<" "<<LambdaDecayPi0Gamma1_out->E()<<" ";
 			(*evtfile)<<0<<" "<<LambdaDecayVx<<" "<<LambdaDecayVy<<" "<<-LambdaDecayVz<<endl;
 
-			(*evtfile)<<"  "<<6<<"\t"<<22<<"\t"<<1<<"\t"<<0<<"\t"<<0<<"\t"<<-1<<"\t"<<-1<<"\t";
+			(*evtfile)<<"  "<<6<<"\t"<<22<<"\t"<<1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t"<<-1<<"\t";
 			(*evtfile)<<LambdaDecayPi0Gamma2_out->Px()<<" "<<LambdaDecayPi0Gamma2_out->Py()<<" "<<-LambdaDecayPi0Gamma2_out->Pz()<<" "<<LambdaDecayPi0Gamma2_out->E()<<" ";
 			(*evtfile)<<0<<" "<<LambdaDecayVx<<" "<<LambdaDecayVy<<" "<<-LambdaDecayVz<<endl;
 		}
